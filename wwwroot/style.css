@@ -1,0 +1,29 @@
+#search-section{
+    margin-top:10px;
+    margin-bottom:10px; 
+}
+
+ input{
+    background:#000;
+    color:#Ffff;
+    border-radius:5px;
+    border:1px solid #fff;
+    height: 35px;
+    margin:10px;
+}
+ input[type="submit"]{
+    background:rgb(69, 207, 15);
+    width: 120px;
+}
+
+#search-section input[type="submit"]:hover{
+    background:gray;
+}
+
+footer{color:red;
+    background:grey;
+    border-top:1px solid grey;
+}
+
+
+

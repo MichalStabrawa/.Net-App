@@ -1,0 +1,62 @@
+@using ASPNET
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Authoring.TagHelpers 
+@using ASPNET.Models
+@{
+    List<Product> listaTemp=(List<Product>)ViewData["products"];
+    string baseUrl="http://localhost:53749/Products/GetAllProducts";
+    int currentPage=int.Parse(ViewData["currentpage"].ToString());
+    string nextPage=@baseUrl+"?page="+(@currentPage+1).ToString();
+    string prevPage=@baseUrl+"?page="+(@currentPage-1).ToString();
+    int testPage=currentPage+1;
+      string sortBy="SupplierID";
+    
+    };
+  
+
+
+<section id="search-section">
+
+    <form action="" method="GET">
+    <input type="search" name="searchP" placeholder="search">
+    <input type="submit" value="send">
+    </form>
+    
+</section>
+
+
+<!--<a href=@prevPage>Prev</a>-->
+@Html.ActionLink("test","GetAllProducts","Products",new{sortBy="ProductName",page=currentPage-1})
+<a href=@nextPage>Next</a>
+@Html.ActionLink("previos page","GetAllProducts","Products",new {sortBy="ProductName", page=currentPage})
+
+@Html.ActionLink("suplier ID","GetAllProducts","Products",new {sortBy="SupplierID"})
+
+<p><a asp-controller="Products" asp-action="GetAllProducts" asp-route-sortBy=@sortBy asp-route-page=@testPage>Nowa Skladnia Link</a></p>
+
+
+<table class="table">
+    <thead>
+        <th><a href=@baseUrl"ProductName">ProductName</a></th>
+        <th><a asp-controller="Products" asp-action="GetAllProducts" asp-route-sortBy=@sortBy asp-route-page=@testPage>SuplierID</a></th>
+        <th>category id</th>
+        <th>unit price</th>
+    </thead>
+    @foreach (Product x in listaTemp)
+    {
+        <tr>
+            <td>
+                @x.ProductName
+            </td>
+            <td>
+                @x.SupplierID
+            </td>
+            <td>
+                @x.CategoryID
+            </td>
+            <td>
+                @x.UnitPrice
+            </td>
+        </tr>
+    }
+</table>
